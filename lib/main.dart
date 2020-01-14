@@ -20,6 +20,95 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  List<Widget> containers = [
+    Container(
+      child: Center(
+        child: Text(
+          'Camera',
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    ),
+    Container(
+      child: ListView.builder(
+        itemBuilder: (ctx, index) {
+          return Card(
+            child: ListTile(
+              title: Text(
+                'Dog',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              trailing: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Text(
+                      '12:00',
+                      style: TextStyle(color: Colors.green),
+                    ),
+                    CircleAvatar(
+                      radius: 10,
+                      child: Text(
+                        '1',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.white,
+                        ),
+                      ),
+                      backgroundColor: Colors.greenAccent[700],
+                    ),
+                  ],
+                ),
+              ),
+              subtitle: Container(
+                child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.done_all,
+                      color: Colors.blue,
+                    ),
+                    Text('Au au'),
+                  ],
+                ),
+              ),
+              leading: CircleAvatar(
+                radius: 25,
+                child: Container(
+                  child: Image.asset('assets/images/Icon-Dog.png'),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    ),
+    Container(
+      child: Center(
+        child: Text(
+          'Status',
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    ),
+    Container(
+      child: Center(
+        child: Text(
+          'Calls',
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -41,6 +130,8 @@ class MyHomePage extends StatelessWidget {
             ),
           ],
           bottom: TabBar(
+            indicatorWeight: 3,
+            indicatorSize: TabBarIndicatorSize.tab,
             tabs: <Widget>[
               Tab(
                 icon: Icon(Icons.camera_alt),
@@ -57,10 +148,8 @@ class MyHomePage extends StatelessWidget {
             ],
           ),
         ),
-        body: Column(
-          children: <Widget>[
-            Text("TEST"),
-          ],
+        body: TabBarView(
+          children: containers,
         ),
         floatingActionButton: FloatingActionButton(
           elevation: 10,
